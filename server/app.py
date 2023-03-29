@@ -13,10 +13,10 @@ def print_string(parameter):
     print(parameter)
     return f"{parameter}"
 
-@app.route("/count/<string:parameter>")
+@app.route("/count/<int:parameter>")
 def count(parameter):
     page = ""
-    for num in range(int(parameter)):
+    for num in range(parameter):
         page += f"{num}\n"
     return page
 
@@ -36,7 +36,7 @@ def math(input):
     operand = operation_regex.findall(input)
     numbers = number_regex.findall(input)
 
-    if operand and numbers:
+    if operand and len(numbers) > 1:
         return f"{op[operand[0]](int(numbers[0]), int(numbers[1]))}"
     return "Touble - Houston help!"
 
